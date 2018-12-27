@@ -20,7 +20,8 @@
 package cloudreports.enums;
 
 import cloudreports.extensions.ExtensionsLoader;
-import cloudreports.extensions.vmallocationpolicies.VmAllocationPolicySingleThreshold;
+import cloudreports.extensions.vmallocationpolicies.VmAllocationPolicyMigrationGA;
+import cloudreports.extensions.vmallocationpolicies.VmSelectionPolicyMinimumUtilization;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -43,12 +44,12 @@ public enum AllocationPolicy implements Serializable {
      * 
      *  @see VmAllocationPolicySingleThreshold
      */
-    SINGLE_THRESHOLD {
+    GA_POLICY {
         @Override
         public VmAllocationPolicy getPolicy(List<PowerHost> hostList, double upperUtilizationThreshold, 
                                             double lowerUtilizationThreshold, double schedulingInterval,
                                             String policyAlias) {
-            return new VmAllocationPolicySingleThreshold(hostList, upperUtilizationThreshold);
+            return new VmAllocationPolicyMigrationGA(hostList, new VmSelectionPolicyMinimumUtilization());
         }
     },
     
@@ -95,8 +96,7 @@ public enum AllocationPolicy implements Serializable {
      * @since                   1.0
      */     
     public static AllocationPolicy getInstance(String policyAlias) {
-        if(policyAlias.equals("Single threshold")) return AllocationPolicy.SINGLE_THRESHOLD;
-        else return AllocationPolicy.EXTENSION;
+        return AllocationPolicy.GA_POLICY;
     }
 
     /** 
@@ -107,7 +107,7 @@ public enum AllocationPolicy implements Serializable {
      * @since   1.0
      */       
     public static String[] getAllocationPoliciesNames() {
-        String[] nativePolicies = new String[] {"Single threshold"};
+        String[] nativePolicies = new String[] {"Genetic Algorithm"};
         List<String> extensionPolicies = ExtensionsLoader.getExtensionsAliasesByType("VmAllocationPolicy");
         extensionPolicies.addAll(Arrays.asList(nativePolicies));
         

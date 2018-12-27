@@ -102,7 +102,7 @@ public class DatacenterRegistry implements Serializable{
         setOs("Linux");
         setVmm("Xen");
         setTimeZone(-3.0);
-        setAllocationPolicyAlias("Single threshold");
+        setAllocationPolicyAlias("Genetic Algorithm");
         setVmMigration(true);
         setCostPerSec(0.1);
         setCostPerMem(0.05);

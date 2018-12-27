@@ -69,7 +69,7 @@ public class UtilizationProfile implements Serializable{
 
     /** The default constructor. */
     public UtilizationProfile() {
-        setBrokerPolicyAlias("Round robin");
+        setBrokerPolicyAlias("Genetic Algorithm");
         setTimeZone(-3.0);
         setNumOfCloudlets(50);
         setLength(50000);

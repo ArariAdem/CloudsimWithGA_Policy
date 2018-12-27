@@ -19,9 +19,9 @@
 
 package cloudreports.extensions;
 
-import cloudreports.extensions.vmallocationpolicies.VmAllocationPolicyExtensible;
 import cloudreports.models.Migration;
 import cloudreports.simulation.Simulation;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.cloudbus.cloudsim.*;
@@ -115,7 +115,7 @@ public class PowerDatacenter extends org.cloudbus.cloudsim.power.PowerDatacenter
                 if (!isDisableMigrations()) {
 
                     //Get VM migration list according to active policies
-                    List<Migration> migrationList = ((VmAllocationPolicyExtensible) getVmAllocationPolicy()).getListOfMigrationsToBeExecuted(getVmList());
+                    List<Migration> migrationList = new ArrayList<Migration>();
 
                     for (Migration migration : migrationList) {
                         Vm vm = migration.getVm();

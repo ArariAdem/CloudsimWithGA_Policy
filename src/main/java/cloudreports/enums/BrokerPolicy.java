@@ -42,7 +42,7 @@ public enum BrokerPolicy implements Serializable {
      * 
      *  @see RoundRobinDatacenterBroker
      */    
-    ROUND_ROBIN {
+    GA_POLICY {
         @Override
         public DatacenterBroker createBroker(String customerName, String brokerAlias) {
             try{
@@ -90,8 +90,7 @@ public enum BrokerPolicy implements Serializable {
      * @since           1.0
      */      
     public static BrokerPolicy getInstance(String alias) {
-        if(alias.equals("Round robin")) return BrokerPolicy.ROUND_ROBIN;
-        else return BrokerPolicy.EXTENSION;
+        return BrokerPolicy.GA_POLICY;
     }
 
     /** 
@@ -102,7 +101,7 @@ public enum BrokerPolicy implements Serializable {
      * @since   1.0
      */      
     public static String[] getBrokerPoliciesNames() {
-        String[] nativePolicies = new String[] {"Round robin"};
+        String[] nativePolicies = new String[] {"Genetic Algorithm"};
         List<String> extensionPolicies = ExtensionsLoader.getExtensionsAliasesByType("Broker");        
         extensionPolicies.addAll(Arrays.asList(nativePolicies));
         
